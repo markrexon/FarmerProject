@@ -1,0 +1,7 @@
+{% for post in object_list %}
+
+<h1> {{post.title}}</h1>
+<small >By : {{post.author}}</small>
+<img src="{{ post.image_header.url }}" >
+<p>{{post.body}}</p>
+{% endfor %}

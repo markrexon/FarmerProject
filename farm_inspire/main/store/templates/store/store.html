@@ -1,0 +1,26 @@
+z{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+		
+{% for pro in products %}
+		<div class="col-lg-4">
+			 <h2>{{pro.owner}}</h2>
+			<img class="thumbnail" src="{{ pro.product_image.url }}" weight="100px">
+			<div class="box-element product">
+				<h4><strong>{{ pro.product_name }}</strong></h4>
+				<hr>
+
+				<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+				<a class="btn btn-outline-success" href="{% url 'cart' %}">View</a>
+				<h4 style="display: inline-block;"><strong>{{pro.price}}</strong></h4>
+
+			</div>
+		</div>
+
+{% endfor %}
+			
+	</div>
+
+
+{% endblock content %}

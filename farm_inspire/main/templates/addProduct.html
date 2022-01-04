@@ -1,0 +1,7 @@
+<h1> Farmer !!! Add Products</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_ul}}
+    {{form.media}}
+    <button>Add It </button>
+</form>

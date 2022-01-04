@@ -1,0 +1,38 @@
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: larger;
+  }
+  
+  li {
+    
+    float: left;
+    list-style-type: none;  }
+    
+  li a {
+    display: block;
+    padding: 8px;
+    
+    background-color: #dddddd;
+  }
+  .intro{
+     color:skyblue; 
+  }
+  .dashmenu{
+    font-size: larger;
+    margin: auto;
+    width: 40%;
+   padding: 10px; 
+    
+  }
+  .about-section{
+    padding: 50px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+  }
+ 

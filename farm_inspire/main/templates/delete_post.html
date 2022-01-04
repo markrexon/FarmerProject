@@ -1,0 +1,9 @@
+Delete post
+<h1> Add post</h1>
+<form method="post">
+    {% csrf_token %}
+    <strong> are you  sure ?</strong>
+   {{form.as_p}}
+    <button>Delete post </button>
+    
+</form>

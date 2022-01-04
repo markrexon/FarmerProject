@@ -1,0 +1,165 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+     <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    {% if title %}
+        <title>Farmer Blog - {{ title }}</title>
+    {% else %}
+        <title>Farmer Blog</title>
+    {% endif %}
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+      <img src= "{% static 'images/logo.png' %}"  width="100px" height="50px"alt="">
+      <a class="navbar-brand mr-4" href="#">Farmer Inspiration</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="nav-item nav-link" href="{% url 'blogpost:home' %}">Home</a>
+      <a class="nav-item nav-link" href="{% url 'blogpost:about' %}">About</a>
+
+
+          {% if user.is_authenticated%}
+          <h4 class="intro">Hello,{{user.username}}</h4>
+          <a href="{% url 'blogpost:profile_edit' %}">Edit Profile</a>
+          
+          <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                    {% else %}
+                <a class="nav-item nav-link" href="{% url 'accounts:login' %}"><i class="fa fa-fw fa-user"></i> Login</a>
+          
+                {% endif %}
+      </div>  
+     
+  </nav>
+  
+
+<!--  Main page image -->    
+     
+      <div class="col-md-12">
+        <img src="{% static 'images/plant.jpg' %}" width="100%" height="300px" class="img-responsive">
+   </div>
+        <!-- dash bard section -->
+   <div class="dashmenu">
+              <li> <a href="{% url 'store' %}"><h5>DashBoard</h5></a></li>
+             <li> <a class="nav-item nav-link" href="{% url 'blogpost:homing' %}" > <h5>Feeds</h5></a></li>
+              <li><a href="{% url 'accounts:addProducts' %}"><h5>Products</h5></a></li>
+                <li><a href="{% url 'accounts:customer_register' %}"><h5>customer</h5></a></li>
+                  <li><a href="{% url 'accounts:employee_register' %}"><h5>Farmer</h5></a></li>
+    </div>
+
+    <br/>
+    <br/>
+     
+ <!--Card section -->
+ <div class="container">
+       <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <img class="card-img-top" src="{% static 'images/img1.jpg' %}" width="100px" height="200px">
+          
+             <h5 class="card-title">Total number of Farmers</h5>
+             <p class="card-text">{{user.id}}</p>
+            <a href="{% url 'accounts:employee_register' %}" class="btn btn-secondary">Go employee</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <img class="card-img-top" src="{% static 'images/img3.png' %}" width="100px" height="200px"> 
+            <h5 class="card-title">Total number of Customer</h5>
+            <p class="card-text">{{user.id}}</p>
+            <a href="{% url 'accounts:customer_register' %}" class="btn btn-secondary">Go user</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <img class="card-img-top" src="{% static 'images/vege.jpg' %}" width="100px" height="200px"> 
+            <h5 class="card-title">Total number of Products</h5>
+            <p class="card-text"> 10{{total_Prod}}</p>
+            <a href="{% url 'accounts:customer_register' %}" class="btn btn-secondary">Go user</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <img class="card-img-top" src="{% static 'images/img2.png' %}" width="100px" height="200px"> 
+            <h5 class="card-title">Total number of Post</h5>
+            <p class="card-text">{{ num_post }}</p>
+            <a href="{% url 'blogpost:add' %}" class="btn btn-secondary">Go Post</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+
+<!-- Feed back-->
+<br/>
+
+<div class="contain">
+  <div style="text-align:center">
+    <h2>Contact Us</h2>
+    <p>Swing by for a cup of coffee, or leave us a message:</p>
+    <a href="{% url 'blogpost:feedbacks' %}" class="btn btn-success"> FeedBack</a>
+   </div>  
+  </div>
+ <br/>
+<!--About us-->
+
+{% block content %}{% endblock %}
+<!--Chatbot-->
+
+
+<style>
+      .rw-conversation-container .rw-header{
+        background-color: green;
+        
+      }
+      .rw-conversation-container .rw-messages-container .rw-client{
+        background-color: #adff2f;
+
+      }
+      .rw-launcher{
+        background-color: green;
+      }
+    </style>
+
+<script>!(function () {
+  let e = document.createElement("script"),
+    t = document.head || document.getElementsByTagName("head")[0];
+  (e.src =
+    "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),    // Replace 1.x.x with the version that you want
+    (e.async = !0),
+    (e.onload = () => {
+      window.WebChat.default(
+        {
+          initPayload:'/greet',
+          customData: { language: "en" },
+          socketUrl: "http://localhost:5005",
+          title:"smart bot for agriculture",
+          subtitle:"say hii for start"
+          // add other props here
+        },
+        null
+      );
+    }),
+    t.insertBefore(e, t.firstChild);
+})();
+</script>
+
+</body>
+</html>

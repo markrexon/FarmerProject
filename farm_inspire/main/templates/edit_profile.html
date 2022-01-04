@@ -1,0 +1,21 @@
+{% block title %}Edit Profile{% endblock %}
+{% block content %}
+
+
+<h1> Edit profile</h1>
+
+
+{{ user.profile.bio }}
+
+<br/>
+
+
+<img src=" {{ user.profile.profile_pic.url }}" class="img-thumbnail" width="100px">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    
+    <button class="btn btn-secondary">Edit profile </button>
+</form>
+{% endblock content %}

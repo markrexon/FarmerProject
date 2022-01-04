@@ -1,0 +1,10 @@
+{% block content %}
+<h1> Add post</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    {{form.media}}
+
+    <button class="btn btn-secondary">Post </button>
+</form>
+{% endblock content %}
